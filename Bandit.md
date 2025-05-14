@@ -74,4 +74,31 @@ Now to send the current level password to port 30001 using ssl/tsl encryption, w
 
 **Level 17**
 
-To find the open and listening ports within the range, we can use nmap and the command `nmap -sV localhost -p31000-32000`. This will show all the active ports. Then we can find the specific ports that require ssl/tsl. We send the connection to these server and try to get the next level user's key. Once we get the private key we can store it to a file and use the command `` to access next level.
+To find the open and listening ports within the range, we can use nmap and the command `nmap -sV localhost -p31000-32000`. This will show all the active ports. Then we can find the specific ports that require ssl/tsl. We send the connection to these server `openssl s_client -connect localhost:31790 -quiet` and try to get the next level user's key. Once we get the private key we can store it to a file and use the command `ssh -i <file name> bandit17@bandit.labs.overthewire.org -p 2220` to access next level.
+
+**Level 18**
+
+We can use `diff` to find the difference between password.new and passowrd.old files. We can use `diff password.new password.old` to get the next user's password in the first line.
+
+**Level 19**
+
+As mentioned in the level description, the .bashrc is modified to exit when we connect. This means that ssh is executed when we try to login, thus we can use the command `ssh bandit.labs.overthewire.org -p 2220 -l bandit18 cat readme` to get the password for the next level.
+
+**Level 20**
+
+When we `ls` we can see a file with setuid preference which allows the file to be executed as the owner of the file. Thus when we try to access the password file of bandit20 we get back the password. The command used is `./bandit20-do cat /etc/bandit_pass/bandit20`.
+
+**Level 21**
+
+Since we have to send the current level password to the server we can create a one time server in any port using `echo -n '<current password>' | nc -l -p <port number> &`. Then we execute the file using the same port number which will read the next level's password.
+
+**Level 22**
+
+When we visit the `/etc/cron.d`, we can find a file named bandit22. When we `cat` the file, we can find the cron job, When we `cat` the cron job we can find that it stores the password for next level in `/tmp` file. Thus we got the password for the next level.
+
+**Level 23**
+
+Similar to the last level, we find the cron job which stores the password of bandit23 in the tmp directory and the name of the file is `echo I am user bandit23 | md5sum | cut -d ' ' -f 1`. This returnes a value which is the file name in /tmp folder which stores the password.
+
+**Level 24**
+
