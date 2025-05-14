@@ -99,6 +99,3 @@ When we visit the `/etc/cron.d`, we can find a file named bandit22. When we `cat
 **Level 23**
 
 Similar to the last level, we find the cron job which stores the password of bandit23 in the tmp directory and the name of the file is `echo I am user bandit23 | md5sum | cut -d ' ' -f 1`. This returnes a value which is the file name in /tmp folder which stores the password.
-
-**Level 24**
-
