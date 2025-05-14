@@ -29,4 +29,4 @@ In this level we can see a folder `inhere`. In the folder we find multiple files
 
 **Level 6**
 
-Similar to previous level we cd to the `inhere` folder. Inside the folder we find multiple folders. To find the exact file with ASCII value, non-executable and 1033 bytes in size we use
+Similar to previous level we cd to the `inhere` folder. Inside the folder we find multiple folders. To find the exact file with ASCII value, non-executable and 1033 bytes in size we use `find . -type f -size 1033c ! -executable -exec file '{}' \; | grep ASCII`.
