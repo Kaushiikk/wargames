@@ -1,1 +1,2 @@
+# Bandit
 Solution for `Wargames`
